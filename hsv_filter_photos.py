@@ -4,12 +4,8 @@ import cv2 as cv
 import numpy as np
 
 global LOW, UPP
-
-image_path = 'img_test1.png'
-
 LOW = np.array([0,0,0])
 UPP = np.array([180,255,255])
-
 
 cv.namedWindow('FILTER MARKERS')
 
@@ -40,12 +36,13 @@ cv.createTrackbar('MAX_HUE', 'FILTER MARKERS' , 180, 180, max_hue)
 cv.createTrackbar('MAX_SAT', 'FILTER MARKERS' , 255, 255, max_sat)
 cv.createTrackbar('MAX_BRI', 'FILTER MARKERS' , 255, 255, max_bri)
 
+image_path = 'img_test1.png'
+
 while True:
     src = cv.imread(image_path)
     cv.imshow('FILTER',src)
 
     hsv = cv.cvtColor(src, cv.COLOR_BGR2HSV)
-
     msk = cv.inRange(hsv, LOW, UPP)
     filtered = cv.bitwise_and(src,src, mask= msk)
     cv.imshow('FILTER', filtered)

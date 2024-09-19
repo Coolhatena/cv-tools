@@ -4,12 +4,8 @@ import cv2 as cv
 import numpy as np
 
 global LOW, UPP
-
-video_path = 'Video.mp4'
-
 LOW = np.array([0,0,0])
 UPP = np.array([180,255,255])
-
 
 cv.namedWindow('FILTER MARKERS')
 
@@ -40,6 +36,7 @@ cv.createTrackbar('MAX_HUE', 'FILTER MARKERS' , 180, 180, max_hue)
 cv.createTrackbar('MAX_SAT', 'FILTER MARKERS' , 255, 255, max_sat)
 cv.createTrackbar('MAX_BRI', 'FILTER MARKERS' , 255, 255, max_bri)
 
+video_path = 'Video.mp4'
 cap = cv.VideoCapture(video_path)
 cap.set(cv.CAP_PROP_FOURCC, cv.VideoWriter_fourcc('M', 'J', 'P', 'G'))
 
@@ -52,11 +49,8 @@ while True:
         break
     
     cv.imshow('src1', src)
-    
-    cv.imshow('FILTER',src)
 
     hsv = cv.cvtColor(src, cv.COLOR_BGR2HSV)
-
     msk = cv.inRange(hsv, LOW, UPP)
     filtered = cv.bitwise_and(src,src, mask= msk)
     filtered_grey = cv.cvtColor(filtered, cv.COLOR_BGR2GRAY)
