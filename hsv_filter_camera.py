@@ -2,6 +2,7 @@
 
 import cv2 as cv
 import numpy as np
+from time import sleep
 
 global LOW, UPP
 LOW = np.array([0,0,0])
@@ -42,8 +43,11 @@ cap = cv.VideoCapture(camera_index)
 cap.set(cv.CAP_PROP_FRAME_WIDTH, 1280)	# 640	/	1280	/	1920	/	3840
 cap.set(cv.CAP_PROP_FRAME_HEIGHT, 720)	# 480	/	720 	/	1080	/	2160
 
-if not cap.isOpened():
-	print('Camera not found')
+while not cap.isOpened():
+	cap = cv.VideoCapture(camera_index)
+	print("Waiting for camera...")
+	sleep(0.05)
+	
 
 while True:
 	ret, src = cap.read()
