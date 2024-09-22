@@ -1,4 +1,5 @@
 import math
+import cv2
 
 # Get the distance bewteen two points
 def calculate_distance(p1, p2):
@@ -31,3 +32,16 @@ def linear_scaling(x, minA=-500, maxA=500, minB=0, maxB=255):
 # rad is the lenght of the line, it will define the other coordinate of the line
 def rotate_n_deg(originx, originy, angle, rad):
 	return (round(originx+rad*math.cos(-math.radians(angle))), round(originy+rad*math.sin(-math.radians(angle))))
+
+# Filter an image based on a given hsv color values range
+# Returns a binary imagen with only the values 
+# Min: [0, 0, 0]
+# Max: [180, 255, 255]
+def hsv_color_filter(image, min_hsv, max_hsv):
+	hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+	msk = cv2.inRange(hsv, min_hsv, min_hsv)
+	filtered = cv2.bitwise_and(image, image, mask= msk)
+	filtered_grey = cv2.cvtColor(filtered, cv2.COLOR_BGR2GRAY)
+	(thresh, image_bw) = cv2.threshold(filtered_grey, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+	
+	return image_bw
