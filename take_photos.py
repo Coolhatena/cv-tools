@@ -1,4 +1,4 @@
-""" A template script for computer vision projects """
+""" Take photos with any camera """
 import cv2
 from time import sleep
 import os
