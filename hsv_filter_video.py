@@ -43,23 +43,29 @@ cap.set(cv.CAP_PROP_FOURCC, cv.VideoWriter_fourcc('M', 'J', 'P', 'G'))
 if not cap.isOpened():
 	print('Video not found')
 
+is_pause = False
 while True:
-    ret, src = cap.read()
-    if not ret:
-        break
-    
-    cv.imshow('src1', src)
+	if not is_pause:
+		ret, src = cap.read()
+		if not ret:
+			break
+	
+	cv.imshow('src1', src)
 
-    hsv = cv.cvtColor(src, cv.COLOR_BGR2HSV)
-    msk = cv.inRange(hsv, LOW, UPP)
-    filtered = cv.bitwise_and(src,src, mask= msk)
-    filtered_grey = cv.cvtColor(filtered, cv.COLOR_BGR2GRAY)
-    
-    cv.imshow('FILTER', filtered)
+	hsv = cv.cvtColor(src, cv.COLOR_BGR2HSV)
+	msk = cv.inRange(hsv, LOW, UPP)
+	filtered = cv.bitwise_and(src,src, mask= msk)
+	filtered_grey = cv.cvtColor(filtered, cv.COLOR_BGR2GRAY)
+	
+	cv.imshow('FILTER', filtered)
 
-    key = cv.waitKey(100)
-    if key == (ord('b')):
-        print('Exit...')
-        break
+	key = cv.waitKey(50)
+	if key == (ord('p')):
+		is_pause = not is_pause
+
+	if key == (ord('b')):
+		print('Exit...')
+		break
 
 cv.destroyAllWindows()
+
