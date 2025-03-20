@@ -39,7 +39,7 @@ def rotate_n_deg(originx, originy, angle, rad):
 # Max: [180, 255, 255]
 def hsv_color_filter(image, min_hsv, max_hsv):
 	hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-	msk = cv2.inRange(hsv, min_hsv, min_hsv)
+	msk = cv2.inRange(hsv, min_hsv, max_hsv)
 	filtered = cv2.bitwise_and(image, image, mask= msk)
 	filtered_grey = cv2.cvtColor(filtered, cv2.COLOR_BGR2GRAY)
 	(thresh, image_bw) = cv2.threshold(filtered_grey, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
