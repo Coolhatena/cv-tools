@@ -1,7 +1,7 @@
 import cv2
 from ultralytics import YOLO
 
-# Cargar el modelo YOLOv8 preentrenado
+# Load custom trained YOLO model
 model = YOLO('yolov8n.pt')
 
 cap = cv2.VideoCapture(0)
