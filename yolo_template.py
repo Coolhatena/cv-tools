@@ -18,7 +18,7 @@ while True:
 
     results = model(frame, verbose=False)
 
-    # Dibujar las detecciones en el cuadro
+    # Draw detections on frame
     annotated_frame = results[0].plot()  # plot() devuelve la imagen con las cajas y etiquetas
 
     # Mostrar el cuadro con detecciones
