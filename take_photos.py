@@ -3,7 +3,7 @@ import cv2
 from time import sleep
 import os
 
-camera_index = 2
+camera_index = 0
 cam = cv2.VideoCapture(camera_index)
 
 while not cam.isOpened():
