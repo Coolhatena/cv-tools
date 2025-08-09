@@ -1,4 +1,5 @@
 # Script to take a bunch of images from different folders, and put them in a single folder with unique names
+
 import os
 import shutil
 import random
