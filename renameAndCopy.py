@@ -14,11 +14,10 @@ prefix = ''
 # Create target folder if it does not exits
 os.makedirs(target_folder, exist_ok=True)
 
-
 def random_name():
     return prefix.join(random.choices(string.ascii_letters + string.digits, k=6))
 
-# Recorre todas las carpetas origen
+
 for folder in source_folders:
     for img_file in os.listdir(folder):
         file_path = os.path.join(folder, img_file)
