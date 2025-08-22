@@ -1,6 +1,12 @@
+""" Take video with any number of cameras at the same time """
 import cv2
 from time import sleep
 
+# Set prefix name for videos
+# This prefix will be numerated at the end depending on which camera is recording it
+video_prefix = "output"
+
+# Indexes for as many cameras as needed
 camera_indexes = [0, 2]
 
 cams = [cv2.VideoCapture(idx) for idx in camera_indexes]
@@ -18,7 +24,7 @@ frame_sizes = [
 
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 outs = [
-	cv2.VideoWriter(f"out{i+1}.mp4", fourcc, 20.0, frame_sizes[i])
+	cv2.VideoWriter(f"{video_prefix}{i+1}.mp4", fourcc, 20.0, frame_sizes[i])
 	for i in range(len(cams))
 ]
 
