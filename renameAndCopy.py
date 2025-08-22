@@ -16,7 +16,7 @@ prefix = ''
 os.makedirs(target_folder, exist_ok=True)
 
 def random_name():
-    return prefix.join(random.choices(string.ascii_letters + string.digits, k=6))
+    return prefix + ''.join(random.choices(string.ascii_letters + string.digits, k=6))
 
 
 for folder in source_folders:
