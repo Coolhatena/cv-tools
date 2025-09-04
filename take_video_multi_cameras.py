@@ -4,7 +4,7 @@ from time import sleep
 
 # Set prefix name for videos
 # This prefix will be numerated at the end depending on which camera is recording it
-video_prefix = "output"
+video_prefix = "output_"
 
 # Indexes for as many cameras as needed
 camera_indexes = [0, 2]
