@@ -1,3 +1,4 @@
+# Snippet to do basic YOLO object detection
 import cv2
 from ultralytics import YOLO
 
