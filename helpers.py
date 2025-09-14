@@ -1,3 +1,4 @@
+""" Miscelaneous image manipulation functions """
 import math
 import cv2
 
