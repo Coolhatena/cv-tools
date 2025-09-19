@@ -46,3 +46,11 @@ def hsv_color_filter(image, min_hsv, max_hsv):
 	(thresh, image_bw) = cv2.threshold(filtered_grey, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
 	
 	return image_bw
+
+#Calculate slope between two image points:
+def slope(p1, p2):
+    x1, y1 = p1
+    x2, y2 = p2
+    if x2 - x1 == 0:
+        return None
+    return (y2 - y1) / (x2 - x1)
