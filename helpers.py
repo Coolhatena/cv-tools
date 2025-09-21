@@ -47,7 +47,7 @@ def hsv_color_filter(image, min_hsv, max_hsv):
 	
 	return image_bw
 
-#Calculate slope between two image points:
+# Calculate slope between two points
 def slope(p1, p2):
     x1, y1 = p1
     x2, y2 = p2
