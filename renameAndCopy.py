@@ -5,6 +5,7 @@ import shutil
 import random
 import string
 
+# The names of the folders where images are stored
 source_folders = [
     'small0/',
     'small1/'
