@@ -25,7 +25,7 @@ while True:
     # Mostrar el cuadro con detecciones
     cv2.imshow("YOLOv8", annotated_frame)
 
-    # Salir con la tecla 'q'
+    # Close pressing 'q' (Case sensitive)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
