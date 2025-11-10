@@ -1,4 +1,4 @@
-""" Miscelaneous image manipulation functions """
+""" Miscelaneous image analysis and manipulation functions """
 import math
 import cv2
 
