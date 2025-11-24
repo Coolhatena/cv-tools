@@ -10,6 +10,8 @@ while not cam.isOpened():
 	print("Waiting for camera...")
 	sleep(0.05)
 
+# Set desired resolution here
+# NOTE: Resolution may be limited by camera specs, check the supported resolutions for your camera
 width = 1280
 height = 720
 
