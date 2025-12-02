@@ -5,6 +5,7 @@ from time import sleep
 camera_index = 2
 cam = cv2.VideoCapture(camera_index)
 
+# Double check for slow cameras
 while not cam.isOpened():
 	cam = cv2.VideoCapture(camera_index)
 	print("Waiting for camera...")
