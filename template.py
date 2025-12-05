@@ -9,7 +9,7 @@ cam = cv2.VideoCapture(camera_index)
 while not cam.isOpened():
 	cam = cv2.VideoCapture(camera_index)
 	print("Waiting for camera...")
-	sleep(0.05)
+	sleep(0.05) # Micro-tic between tries
 
 q_unicode = ord('q')
 
