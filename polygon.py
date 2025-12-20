@@ -1,4 +1,4 @@
-""" Generate polygon mask for post-procesing """
+""" Generate polygon mask file for post-procesing """
 
 import numpy as np
 import cv2
