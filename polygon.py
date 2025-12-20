@@ -1,4 +1,4 @@
-""" Generate polygon mask file for post-procesing """
+""" Generate polygon mask filez for post-procesing """
 
 import numpy as np
 import cv2
@@ -13,7 +13,7 @@ pts = []
 
 def click_event(event, x, y, flags, params): 
     global pts
-    # checking for left mouse clicks 
+    # Checking for left mouse clicks 
     if event == cv2.EVENT_LBUTTONDOWN: 
         pts.append([x, y])
 
@@ -29,7 +29,7 @@ while True:
     key = cv2.waitKey(1)
     
     if key == ord('b'):
-        ## (1) Crop the bounding rect
+        # Crop the bounding rect
         pts = np.array(pts)
         rect = cv2.boundingRect(pts)
         x,y,w,h = rect
