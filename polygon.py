@@ -13,7 +13,7 @@ pts = []
 
 def click_event(event, x, y, flags, params): 
     global pts
-    # Checking for left mouse clicks 
+    # Select vertices using left click 
     if event == cv2.EVENT_LBUTTONDOWN: 
         pts.append([x, y])
 
@@ -41,6 +41,8 @@ while True:
         bg = np.ones_like(cropped, np.uint8)*255
         cv2.bitwise_not(bg,bg, mask=mask)
         dst2 = bg+ dst        
+        
+		# Display the selected polygon
         cv2.imshow("croped", cropped)
         cv2.imshow("mask", mask)
         cv2.imshow("dst", dst)
