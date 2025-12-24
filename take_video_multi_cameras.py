@@ -56,7 +56,7 @@ while True:
 	if key == q_unicode:
 		break
 
-# Free all locked data and close windows
+# Free all locked resources and close windows
 for cam in cams:
 	cam.release()
 for out in outs:
