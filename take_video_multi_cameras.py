@@ -6,7 +6,7 @@ from time import sleep
 # This prefix will be numerated at the end depending on which camera is recording it
 video_prefix = "output_"
 
-# Indexes for as many cameras as needed
+# Indexes for as many cameras as needed (Check OS indexes)
 camera_indexes = [0, 2]
 
 cams = [cv2.VideoCapture(idx) for idx in camera_indexes]
