@@ -3,55 +3,42 @@
 import cv2 as cv
 import numpy as np
 
-global LOW, UPP
-LOW = np.array([0,0,0])
-UPP = np.array([180,255,255])
-
-cv.namedWindow('FILTER MARKERS')
-
-def min_hue(MINHUE):
-	LOW[0] = MINHUE
-
-def min_sat(MINSAT):
-	LOW[1] = MINSAT
-
-def min_bri(MINBRI):
-	LOW[2] = MINBRI
-
-def max_hue(MAXHUE):
-	UPP[0] = MAXHUE
-
-def max_sat(MAXSAT):
-	UPP[1] = MAXSAT
-
-def max_bri(MAXBRI):
-	UPP[2] = MAXBRI
-
-
-cv.createTrackbar('MIN_HUE', 'FILTER MARKERS' , 0, 180, min_hue)
-cv.createTrackbar('MIN_SAT', 'FILTER MARKERS' , 0, 255, min_sat)
-cv.createTrackbar('MIN_BRI', 'FILTER MARKERS' , 0, 255, min_bri)
-
-cv.createTrackbar('MAX_HUE', 'FILTER MARKERS' , 180, 180, max_hue)
-cv.createTrackbar('MAX_SAT', 'FILTER MARKERS' , 255, 255, max_sat)
-cv.createTrackbar('MAX_BRI', 'FILTER MARKERS' , 255, 255, max_bri)
-
+WIN = 'FILTER MARKERS'
 image_path = 'img_test1.png'
 
+src = cv.imread(image_path)
+hsv = cv.cvtColor(src, cv.COLOR_BGR2HSV)
+
+cv.namedWindow(WIN)
+cv.createTrackbar('MIN_HUE', WIN,   0, 180, lambda _: None)
+cv.createTrackbar('MIN_SAT', WIN,   0, 255, lambda _: None)
+cv.createTrackbar('MIN_BRI', WIN,   0, 255, lambda _: None)
+cv.createTrackbar('MAX_HUE', WIN, 180, 180, lambda _: None)
+cv.createTrackbar('MAX_SAT', WIN, 255, 255, lambda _: None)
+cv.createTrackbar('MAX_BRI', WIN, 255, 255, lambda _: None)
+
+prev_low = prev_upp = None
+
 while True:
-    src = cv.imread(image_path)
-    cv.imshow('FILTER',src)
+    low = np.array([
+        cv.getTrackbarPos('MIN_HUE', WIN),
+        cv.getTrackbarPos('MIN_SAT', WIN),
+        cv.getTrackbarPos('MIN_BRI', WIN),
+    ])
+    upp = np.array([
+        cv.getTrackbarPos('MAX_HUE', WIN),
+        cv.getTrackbarPos('MAX_SAT', WIN),
+        cv.getTrackbarPos('MAX_BRI', WIN),
+    ])
 
-    hsv = cv.cvtColor(src, cv.COLOR_BGR2HSV)
-    msk = cv.inRange(hsv, LOW, UPP)
-    filtered = cv.bitwise_and(src,src, mask= msk)
-    cv.imshow('FILTER', filtered)
+    if not np.array_equal(low, prev_low) or not np.array_equal(upp, prev_upp):
+        msk = cv.inRange(hsv, low, upp)
+        filtered = cv.bitwise_and(src, src, mask=msk)
+        cv.imshow('FILTER', filtered)
+        prev_low, prev_upp = low.copy(), upp.copy()
 
-    key = cv.waitKey(1)
-    if key == (ord('b')):
-        print('Exit...')
+    if cv.waitKey(1) == ord('b'):
+        print('Closing...')
         break
 
-
-cv.waitKey(0)
 cv.destroyAllWindows()
